@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background: linear-gradient(to right, #fbc2eb, #a6c1ee);">
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">🛒 Your Cart</h2>
+
+    {% if cart %}
+
+        <div class="row">
+
+        {% for item in cart %}
+
+            <div class="col-md-4">
+                <div class="card p-3 shadow mb-3">
+
+                    <img src="{{ url_for('static', filename=item.image) }}" height="200">
+
+                    <h5>{{ item.name }}</h5>
+                    <p>₹ {{ item.price }}</p>
+
+                    <a href="/remove_from_cart/{{ item.id }}" class="btn btn-danger btn-sm">
+                        Remove
+                    </a>
+
+                </div>
+            </div>
+
+        {% endfor %}
+
+        </div>
+
+    {% else %}
+        <p class="text-center">Cart is empty 😢</p>
+    {% endif %}
+
+    <div class="text-center mt-3">
+        <a href="/products" class="btn btn-primary">Continue Shopping</a>
+    </div>
+
+</div>
+
+</body>
+</html>
